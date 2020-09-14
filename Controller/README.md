@@ -47,9 +47,7 @@ id: 本のid、defaultで1
 ```
 - **返すデータ**
 ```
-{
-  "status-code": int
-}
+null
 
 ```
 
@@ -91,8 +89,8 @@ id: 質問id
 - **返すデータ**
 ```
 {
-  "name": string,
-  "datetime": timestamp,
+  "user_name": string,
+  "created_at": timestamp,
   "page_num": int,
   "row_num": int,
   "title": string,
@@ -112,7 +110,7 @@ id: 質問id,
 {
   "answers": [
     {
-      "datetime": timestamp,
+      "created_at": timestamp,
       "content": text,
       "like_num": int(default: 40)
     },
@@ -133,8 +131,8 @@ id: 質問id,
 {
   "answers": [
     {
-      "name": string
-      "datetime": timestamp,
+      "user_name": string
+      "created_at": timestamp,
       "content": text,
       "like_num": int(default: random)←高い順でsortする
     },
@@ -170,10 +168,7 @@ id: 質問id,
 ```
 - **返すデータ**
 ```
-{
-  "status_code": int
-}
-
+null
 ```
 
 ## 質問の検索
