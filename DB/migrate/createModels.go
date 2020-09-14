@@ -1,21 +1,21 @@
 package main
 
 import (
-  "github.com/jinzhu/gorm"
-  _ "github.com/jinzhu/gorm/dialects/postgres"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"time"
 )
 
 type User struct {
-	ID        uint    `gorm:"primaryKey"`
-	Name	 string			`json:id`
-	Email  string			`json:email` 
-	Password string   `json:password`
-	Status int        `json:status`
+	ID       uint   `gorm:"primaryKey"`
+	Name     string `json:id`
+	Email    string `json:email`
+	Password string `json:password`
+	Status   int    `json:status`
 }
 
 type Reply struct {
-	Content string
-  CreatedAt timestamp
+	Content   string
+	CreatedAt time.Time
 }
 
 type Genre struct {
@@ -23,19 +23,19 @@ type Genre struct {
 }
 
 type Book struct {
-	Title string
-	Image string
-	Price int
+	Title  string
+	Image  string
+	Price  int
 	Author string
-	Bio string
+	Bio    string
 }
 
 type Chapter struct {
 	Number int
-}	
+}
 
 type Page struct {
-	Number int	
+	Number int
 }
 
 type Like struct {
@@ -46,20 +46,14 @@ type Sentence struct {
 }
 
 type Question struct {
-	Title string
-	Content string
-	PageNum int
-	RowNum int
+	Title     string
+	Content   string
+	PageNum   int
+	RowNum    int
 	CreatedAt time.Time
 }
 
 type UserBook struct {
-	Status int
+	Status    int
 	CreatedAt time.Time
 }
-
-
-
-
-
-
