@@ -19,7 +19,8 @@ func Connect() *gorm.DB {
 		dsn := os.Getenv("DATABASE_URL")
 	*/
 
-	dsn := "DATABASE_URL?sslmode=disable"
+	//書き換える!!しかし、commitしないこと!
+	dsn := "自分のDATABASE_URL?sslmode=disable"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal(err.Error())
