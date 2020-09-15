@@ -9,17 +9,17 @@ id: 本のid、defaultで1
 - **返すデータ**
 ```
 {
-  "book": [
+  "Book": [
     {
-      "chapter_id": int,
-      "pages": [
+      "ChapterID": int,
+      "Pages": [
         {
-          "page_id": int,
-          "sentences": [
+          "PageID": int,
+          "Sentences": [
             {
-              "sentence_id": int,
-              "content": text,
-              "questions": boolean(あり:0, なし:1)
+              "SentenceID": int,
+              "Content": text,
+              "HasQuestion": boolean(あり:0, なし:1)
             },
             .......
           ]

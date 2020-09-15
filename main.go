@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 
+	bookcontentscontroller "github.com/KazuwoKiwame12/bookViewerBackend/Controller/BookContentsController"
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -21,8 +22,8 @@ func main() {
 	e.Use(middleware.CORS())
 	// REST API
 	e.GET("/", helloWorld)
+	e.GET("/api/book/mine/:id", bookcontentscontroller.GetBookContents)
 	/*
-		e.Get("/api/book/mine/:id", Controller当てはめる)
 		e.Get("/api/chapter/:id", Controller当てはめる)
 		e.Get("/api/question/:id/content", Controller当てはめる)
 		e.Get("/api/question/:id/author/answer", Controller当てはめる)
