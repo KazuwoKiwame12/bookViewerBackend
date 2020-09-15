@@ -5,19 +5,12 @@ import (
 	"time"
 )
 
-type like struct {
-	ID      int
-	UserID  int
-	ReplyID int
-}
-
 type Reply struct {
 	ID         int
 	UserID     int
 	QuestionID int
 	Content    string
 	CreatedAt  time.Time
-	Likes      []like
 }
 
 func Create(reply Reply) bool {
@@ -31,7 +24,7 @@ func Create(reply Reply) bool {
 	return true
 }
 
-//Get ...リプライモデルの取得
+//Get ...リプライ詳細の取得
 func Get(id int) Reply {
 	db := db.Connect()
 	defer db.Close()
