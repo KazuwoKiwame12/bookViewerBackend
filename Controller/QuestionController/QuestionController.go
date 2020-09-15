@@ -33,7 +33,8 @@ func Post(c echo.Context) error {
 	com.Content = request.Content
 	com.Page_num = request.PageNum
 	com.Row_num = request.RowNum
-	com.Created_At = time.Now()
+	jst, _ := time.LoadLocation("Asia/Tokyo")
+	com.Created_At = time.Now().In(jst)
 
 	//DB処理
 	hasSuccess := question.Create(com)
