@@ -5,15 +5,22 @@ import (
 	genre "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Genre"
 )
 
+type chapter struct {
+	ID     int
+	BookID int
+	Number int
+}
+
 //Book ...本のモデル
 type Book struct {
-	ID      int
-	GenreID int
-	Title   string
-	Image   string
-	Price   int
-	Author  string
-	Bio     string
+	ID       int
+	GenreID  int
+	Title    string
+	Image    string
+	Price    int
+	Author   string
+	Bio      string
+	Chapters []chapter
 }
 
 //Create ...本モデルの新規作成
@@ -36,7 +43,7 @@ func Get(id int) Book {
 	book := Book{}
 	db.First(&book, id)
 
-	return genre
+	return book
 }
 
 //GetListByGenre ...指定したジャンルに属する本モデルのリスト取得
