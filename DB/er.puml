@@ -1,0 +1,100 @@
+@startuml erdiagram
+
+entity "users" {
+    + id [PK]
+    ==
+    name(string)
+    email(string)
+    password(string)
+    status(0: author, 1: reader)
+}
+
+entity "genres" {
+    + id [PK]
+    ==
+    name
+}
+
+entity "books" {
+    + id [PK]
+    ==
+    # genre_id [FK(genres.id)]
+    title(string)
+    image(URL:string)
+    price(integer)
+    author(string)
+    bio(text)
+}
+
+entity "chapters" {
+    + id [PK]
+    ==
+    # book_id [FK(books.id)]
+    number(integer)
+}
+
+entity "pages" {
+    + id [PK]
+    ==
+    # chapter_id [FK(chapters.id)]
+    number(integer)
+}
+
+entity "sentences" {
+    + id [PK]
+    ==
+    # page_id [FK(page.id)]
+    content(text)
+}
+
+entity "questions" {
+    + id [PK]
+    ==
+    # user_id [FK(users.id)]
+    # sentence_id [FK(sentences.id)]
+    title(string)
+    content(text)
+    page_num(integer)
+    row_num(integer)
+    created_at(datetime)
+}
+
+entity "replys" {
+    + id [PK]
+    ==
+    # user_id [FK(users.id)
+    # question_id [FK(questions.id)]
+    content(text)
+    created_at(datetime)
+}
+
+entity "likes" {
+    + id [PK]
+    ==
+    # user_id [FK(users.id)
+    # reply_id [FK(replys.id)]
+}
+
+entity "user_books" {
+    + id [PK]
+    ==
+    # user_id [FK(users.id)]
+    # book_id [FK(books.id)]
+    status(未読: 0, 読書中:1, 読書済: 2)
+    created_at(datetime)
+}
+
+users --|{ user_books
+books --|{ user_books
+genres --|{ books
+users --|{ questions
+questions }|-- sentences
+users --|{ replys
+questions --|{ replys
+users --|{ likes
+replys --|{ likes
+chapters --|{ pages
+books --|{ chapters
+pages --|{ sentences
+
+@enduml

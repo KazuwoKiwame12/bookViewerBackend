@@ -63,7 +63,6 @@ CREATE TABLE questions (
   created_at timestamp with time zone NOT NULL
 );
 
-
 CREATE TABLE replys (
   id SERIAL NOT NULL PRIMARY KEY ,
   user_id int NOT NULL references users(id) ,
