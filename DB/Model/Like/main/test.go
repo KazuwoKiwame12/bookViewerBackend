@@ -11,14 +11,8 @@ func main() {
 	model.UserID = 1
 	model.ReplyID = 1
 	like.Create(model)
-	model.UserID = 2
-	model.ReplyID = 2
-	like.Create(model)
-	model.UserID = 2
-	model.ReplyID = 2
-	like.Create(model)
 
-	fmt.Println(like.Get(1))
-	fmt.Println(like.GetListByChapter(1))
+	//fmt.Println(like.Get(1, 1))
+	//fmt.Println(like.GetListByReply(1))
 	fmt.Println(like.GetListByUser(1))
 }

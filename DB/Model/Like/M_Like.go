@@ -2,7 +2,7 @@ package Like
 
 import (
 	db "github.com/KazuwoKiwame12/bookViewerBackend/DB"
-	chapter "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Reply"
+	reply "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Reply"
 	user "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/User"
 )
 
@@ -26,12 +26,14 @@ func Create(like Like) bool {
 }
 
 //Get ...いいねモデルの取得
-func Get(id int) Like {
+func Get(userID int, replyID int) Like {
 	db := db.Connect()
 	defer db.Close()
 
 	like := Like{}
-	db.First(&like, id)
+	like.UserID = userID
+	like.ReplyID = replyID
+	db.First(&like)
 
 	return like
 }
