@@ -1,7 +1,7 @@
 # APIの設計
 ## 本の内容を取得
 - **Method**: GET
-- **URL**: /api/book/{id}
+- **URL**: /api/mine/book/{book_id}
 - **受け取るデータ**
 ```
 id: 本のid、defaultで1

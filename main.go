@@ -22,7 +22,7 @@ func main() {
 	// REST API
 	e.GET("/", helloWorld)
 	/*
-		e.Get("/api/book/:id", Controller当てはめる)
+		e.Get("/api/book/mine/:id", Controller当てはめる)
 		e.Get("/api/chapter/:id", Controller当てはめる)
 		e.Get("/api/question/:id/content", Controller当てはめる)
 		e.Get("/api/question/:id/author/answer", Controller当てはめる)
