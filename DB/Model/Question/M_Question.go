@@ -4,6 +4,7 @@ import (
 	"time"
 
 	db "github.com/KazuwoKiwame12/bookViewerBackend/DB"
+	sentence "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Sentence"
 )
 
 //Question ...質問モデル
@@ -13,9 +14,9 @@ type Question struct {
 	SentenceID int
 	Title      string
 	Content    string
-	Page_num   int
-	Row_num    int
-	Created_At time.Time
+	PageNum    int
+	RowNum     int
+	CreatedAt  time.Time
 }
 
 //Create ...質問投稿
@@ -50,4 +51,18 @@ func Show(questionID int) Question {
 	db.First(&question, questionID)
 
 	return question
+}
+
+//GetListBySentence ...同じ文章に属する質問リストを取得
+func GetListBySentence(sentenceID int) []Question {
+	db := db.Connect()
+	defer db.Close()
+
+	sentence := sentence.Sentence{}
+	sentence.ID = sentenceID
+
+	questionList := []Question{}
+	db.Model(&sentence).Association("Questions").Find(&questionList)
+
+	return questionList
 }
