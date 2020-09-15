@@ -5,11 +5,18 @@ import (
 	chapter "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Chapter"
 )
 
+type sentence struct {
+	ID      int
+	PageID  int
+	Content string
+}
+
 //Page ...ページのモデル
 type Page struct {
 	ID        int
 	ChapterID int
 	Number    int
+	Sentences []sentence
 }
 
 //Create ...ページモデルの新規作成
