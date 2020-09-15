@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"os"
 
-	db "github.com/KazuwoKiwame12/bookViewerBackend/DB"
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -40,7 +39,5 @@ func main() {
 }
 
 func helloWorld(c echo.Context) error {
-	db := db.Connect()
-	fmt.Print(db)
 	return c.JSON(http.StatusOK, "Hello World!!")
 }

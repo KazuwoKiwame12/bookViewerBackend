@@ -3,8 +3,8 @@ package db
 import (
 	"log"
 
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
 //Connect ...DBとの接続
@@ -21,7 +21,8 @@ func Connect() *gorm.DB {
 
 	//書き換える!!しかし、commitしないこと!
 	dsn := "自分のDATABASE_URL?sslmode=disable"
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	//db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open("postgres", dsn)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
