@@ -31,7 +31,7 @@ func Create(question Question) bool {
 }
 
 //GetQuestionList ...質問一覧取得
-func GetQuestionList(chapterID int) []Question {
+func GetQuestionList() []Question {
 	db := db.Connect()
 	defer db.Close()
 
@@ -41,8 +41,8 @@ func GetQuestionList(chapterID int) []Question {
 	return questionList
 }
 
-//QuestionShow ...質問詳細取得
-func QuestionShow(questionID int) Question {
+//Show ...質問詳細取得
+func Show(questionID int) Question {
 	db := db.Connect()
 	defer db.Close()
 
