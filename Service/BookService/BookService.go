@@ -1,8 +1,6 @@
 package bookservice
 
 import (
-	"fmt"
-
 	chapter "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Chapter"
 	page "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Page"
 	question "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Question"
@@ -15,17 +13,17 @@ type BookData struct {
 }
 
 type chapterData struct {
-	ID    int
-	Pages []pageData
+	ChapterID int
+	Pages     []pageData
 }
 
 type pageData struct {
-	ID        int
+	PageID    int
 	Sentences []sentenceData
 }
 
 type sentenceData struct {
-	ID          int
+	SentenceID  int
 	Content     string
 	HasQuestion bool
 }
@@ -40,15 +38,12 @@ func GetBookContentsForClient(bookID int) BookData {
 		for _, page := range page.GetListByChapter(chapter.ID) {
 			sentenceDataList := []sentenceData{}
 			for _, sentence := range sentence.GetListByPage(page.ID) {
-				data := sentenceData{ID: sentence.ID, Content: sentence.Content, HasQuestion: checkHasQuestion(sentence.ID)}
-				sentenceDataList := append(sentenceDataList, data)
-				fmt.Println(sentenceDataList)
+				data := sentenceData{SentenceID: sentence.ID, Content: sentence.Content, HasQuestion: checkHasQuestion(sentence.ID)}
+				sentenceDataList = append(sentenceDataList, data)
 			}
-			pageDataList := append(pageDataList, pageData{ID: page.ID, Sentences: sentenceDataList})
-			fmt.Println(pageDataList)
+			pageDataList = append(pageDataList, pageData{PageID: page.ID, Sentences: sentenceDataList})
 		}
-		chapterDataList := append(chapterDataList, chapterData{ID: chapter.ID, Pages: pageDataList})
-		fmt.Println(chapterDataList)
+		chapterDataList = append(chapterDataList, chapterData{ChapterID: chapter.ID, Pages: pageDataList})
 	}
 
 	response.Book = chapterDataList
@@ -60,6 +55,5 @@ func checkHasQuestion(sentenceID int) bool {
 	if len(questionList) == 0 {
 		return false
 	}
-
 	return true
 }

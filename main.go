@@ -22,7 +22,7 @@ func main() {
 	e.Use(middleware.CORS())
 	// REST API
 	e.GET("/", helloWorld)
-	e.Get("/api/book/mine/:id", bookcontentscontroller.GetBookContents)
+	e.GET("/api/book/mine/:id", bookcontentscontroller.GetBookContents)
 	/*
 		e.Get("/api/chapter/:id", Controller当てはめる)
 		e.Get("/api/question/:id/content", Controller当てはめる)
