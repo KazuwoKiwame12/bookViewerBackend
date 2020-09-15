@@ -9,7 +9,7 @@ import (
 func main() {
 	model := question.Question{}
 	model.UserID = 1
-	model.SentenceID = 2
+	model.SentenceID = 1
 	model.Title = "Pythonについて"
 	model.Content = "魅力を教えて～"
 	question.Create(model)
