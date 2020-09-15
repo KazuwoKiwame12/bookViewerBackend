@@ -11,33 +11,9 @@ CREATE TABLE users (
   UNIQUE (email)
 );
 
-CREATE TABLE questions (
+CREATE TABLE genres (
   id SERIAL NOT NULL PRIMARY KEY ,
-  user_id int NOT NULL references users(id) ,
-  sentence_id int NOT NULL references sentences(id) ,
-  title VARCHAR( 100 ) NOT NULL ,
-  content text,
-  page_num int,
-  row_num int,
-  created_at timestamp with time zone NOT NULL
-);
-
-CREATE TABLE sentences (
-  id SERIAL NOT NULL PRIMARY KEY ,
-  page_id int NOT NULL references pages(id) ,
-  content text NOT NULL
-);
-
-CREATE TABLE pages (
-  id SERIAL NOT NULL PRIMARY KEY ,
-  chapter_id int NOT NULL references chapters(id) ,
-  number int NOT NULL
-);
-
-CREATE TABLE chapters (
-  id SERIAL NOT NULL PRIMARY KEY ,
-  book_id int NOT NULL references books(id) ,
-  number int NOT NULL
+  name VARCHAR( 100 ) NOT NULL
 );
 
 CREATE TABLE books (
@@ -53,14 +29,40 @@ CREATE TABLE books (
 CREATE TABLE user_books (
   id SERIAL NOT NULL PRIMARY KEY ,
   user_id int NOT NULL references users(id) ,
+  book_id int NOT NULL references books(id) ,
   status int DEFAULT 0 NOT NULL ,
   created_at timestamp with time zone NOT NULL
 );
 
-CREATE TABLE genres (
+CREATE TABLE chapters (
   id SERIAL NOT NULL PRIMARY KEY ,
-  name VARCHAR( 100 ) NOT NULL
+  book_id int NOT NULL references books(id) ,
+  number int NOT NULL
 );
+
+CREATE TABLE pages (
+  id SERIAL NOT NULL PRIMARY KEY ,
+  chapter_id int NOT NULL references chapters(id) ,
+  number int NOT NULL
+);
+
+CREATE TABLE sentences (
+  id SERIAL NOT NULL PRIMARY KEY ,
+  page_id int NOT NULL references pages(id) ,
+  content text NOT NULL
+);
+
+CREATE TABLE questions (
+  id SERIAL NOT NULL PRIMARY KEY ,
+  user_id int NOT NULL references users(id) ,
+  sentence_id int references sentences(id) ,
+  title VARCHAR( 100 ) NOT NULL ,
+  content text,
+  page_num int,
+  row_num int,
+  created_at timestamp with time zone NOT NULL
+);
+
 
 CREATE TABLE replys (
   id SERIAL NOT NULL PRIMARY KEY ,
@@ -73,5 +75,5 @@ CREATE TABLE replys (
 CREATE TABLE likes (
   id SERIAL NOT NULL PRIMARY KEY ,
   user_id int NOT NULL references users(id) ,
-  reply_id int NOT NULL references replys(id) ,
+  reply_id int NOT NULL references replys(id)
 );
