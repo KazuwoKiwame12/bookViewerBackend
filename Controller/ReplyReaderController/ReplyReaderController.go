@@ -45,7 +45,7 @@ func GetList(c echo.Context) error {
 	sortData = replyDataList
 	sort.Sort(sortData)
 
-	response := map[string][]replyData{"ReplyList": sortData}
+	response := map[string][]replyData{"Replies": sortData}
 	return c.JSON(http.StatusOK, response)
 }
 
