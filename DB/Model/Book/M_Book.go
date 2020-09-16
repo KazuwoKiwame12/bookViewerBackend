@@ -18,7 +18,7 @@ type Book struct {
 	Title    string
 	Image    string
 	Price    int
-	Author   string
+	AuthorID int
 	Bio      string
 	Chapters []chapter
 }
