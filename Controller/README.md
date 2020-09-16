@@ -39,10 +39,11 @@ id: 本のid、defaultで1
 ```
 {
   user_id : int
+  sentence_id : int
   page_num : int
   row_num : int
   title : string
-  content : string  
+  content : string
 }
 ```
 - **返すデータ**
@@ -170,7 +171,9 @@ id: 質問id,
 ```
 - **返すデータ**
 ```
-null
+{
+  HasSuccess : bool
+}
 ```
 
 ## 質問の検索
