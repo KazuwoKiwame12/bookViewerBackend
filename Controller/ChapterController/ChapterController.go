@@ -19,18 +19,17 @@ type QuestionsList struct {
 }
 
 // 質問一覧を取得
-// FIX: 章ごとに取得する
 func GetQuestionList(c echo.Context) error {
 	response := QuestionsList{}
 
 	questionsDataList := []questionsData{}
-	for _, question := range question.GetQuestionList() {
-		user := user.Get(question.UserID)
+	for _, q := range question.GetQuestionList() {
+		user := user.Get(q.UserID)
 		questionsData := questionsData{}
-		questionsData.QuestionID = question.ID
+		questionsData.QuestionID = q.ID
 		questionsData.UserName = user.Name
-		questionsData.Title = question.Title
-		questionsData.CreatedAt = question.Created_At
+		questionsData.Title = q.Title
+		questionsData.CreatedAt = q.Created_At
 
 		questionsDataList = append(questionsDataList, questionsData)
 	}
