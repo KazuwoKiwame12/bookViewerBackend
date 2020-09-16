@@ -16,10 +16,10 @@ import (
 type ReplyDataList []replyData
 
 type replyData struct {
-	UserName  string
-	Content   string
-	LikeNum   int
-	CreatedAt time.Time
+	UserName  string    `json:"user_name"`
+	Content   string    `json:"content"`
+	LikeNum   int       `json:"like_num"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 //GetList ...質問に対する読者の返信一覧
@@ -45,7 +45,7 @@ func GetList(c echo.Context) error {
 	sortData = replyDataList
 	sort.Sort(sortData)
 
-	response := map[string][]replyData{"Replies": sortData}
+	response := map[string][]replyData{"answers": sortData}
 	return c.JSON(http.StatusOK, response)
 }
 

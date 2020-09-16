@@ -32,6 +32,6 @@ func Post(c echo.Context) error {
 
 	//DB処理
 	hasSuccess := reply.Create(rep)
-	returnValue := map[string]bool{"HasSuccess": hasSuccess}
+	returnValue := map[string]bool{"has_success": hasSuccess}
 	return c.JSON(http.StatusOK, returnValue)
 }

@@ -49,7 +49,7 @@ id: 本のid、defaultで1
 - **返すデータ**
 ```
 {
-  HasSuccess : bool
+  has_success : bool
 }
 
 ```
@@ -92,12 +92,12 @@ id: 質問id
 - **返すデータ**
 ```
 {
-  "UserName": string,
-  "Title": string,
-  "Content": string,
-  "PageNum": int,
-  "RowNum": int,
-  "CreatedAt": timestamp,
+  "user_name": string,
+  "title": string,
+  "content": string,
+  "page_num": int,
+  "row_num": int,
+  "created_at": timestamp,
 }
 ```
 
@@ -154,8 +154,8 @@ id: 質問id,
 - **返すデータ**
 ```
 {
-  "ContentList": [{
-    "Content": text
+  "content_list": [{
+    "content": text
   }
   ...
   ]
@@ -176,7 +176,7 @@ id: 質問id,
 - **返すデータ**
 ```
 {
-  HasSuccess : bool
+  has_success : bool
 }
 ```
 
@@ -190,7 +190,7 @@ title: 質問のタイトル,
 - **返すデータ**
 ```
 {
-  questions: [
+  Questions: [
     {
       question_id: int,
       user_name: string
@@ -212,7 +212,7 @@ id: 文書id,
 - **返すデータ**
 ```
 {
-  question: [{
+  Questions: [{
     question_id: int,
     user_name: string
     title:string,

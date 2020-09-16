@@ -10,9 +10,9 @@ import (
 )
 
 type replyData struct {
-	Content   string
-	LikeNum   int
-	CreatedAt time.Time
+	Content   string    `json:"content"`
+	LikeNum   int       `json:"like_num"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 //GetList ...質問に対する著者の返信一覧
@@ -30,6 +30,6 @@ func GetList(c echo.Context) error {
 		replyDataList = append(replyDataList, replyData)
 	}
 
-	response := map[string][]replyData{"Replies": replyDataList}
+	response := map[string][]replyData{"answers": replyDataList}
 	return c.JSON(http.StatusOK, response)
 }

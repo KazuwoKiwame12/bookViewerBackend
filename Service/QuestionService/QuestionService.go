@@ -8,10 +8,10 @@ import (
 )
 
 type questionFC struct {
-	QuestionID int
-	Title      string
-	UserName   string
-	CreatedAt  time.Time
+	QuestionID int       `json:"question_id"`
+	Title      string    `json:"title"`
+	UserName   string    `json:"user_nama"`
+	CreatedAt  time.Time `json:"created_at"`
 }
 
 //QuestionListFC ..クライアントに返す質問一覧

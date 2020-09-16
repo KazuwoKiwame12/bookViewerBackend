@@ -11,12 +11,12 @@ import (
 )
 
 type questionContent struct {
-	UserName  string
-	Title     string
-	Content   string
-	PageNum   int
-	RowNum    int
-	CreatedAt time.Time
+	UserName  string    `json:"user_name"`
+	Title     string    `json:"title"`
+	Content   string    `json:"content"`
+	PageNum   int       `json:"page_num"`
+	RowNum    int       `json:"row_num"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 //GetContent ...質問内容などの取得

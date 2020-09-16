@@ -1,4 +1,4 @@
-package ChapterController
+package chaptercontroller
 
 import (
 	"net/http"
@@ -10,13 +10,13 @@ import (
 )
 
 type questionsData struct {
-	QuestionID int
-	Title      string
-	UserName   string
-	CreatedAt  time.Time
+	QuestionID int       `json:"question_id"`
+	Title      string    `json:"title"`
+	UserName   string    `json:"user_name"`
+	CreatedAt  time.Time `json:"created_at"`
 }
 type QuestionsList struct {
-	Questions []questionsData
+	Questions []questionsData `json:"questions"`
 }
 
 // 質問一覧を取得
