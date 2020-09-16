@@ -63,7 +63,7 @@ CREATE TABLE questions (
   created_at timestamp with time zone NOT NULL
 );
 
-CREATE TABLE replys (
+CREATE TABLE replies (
   id SERIAL NOT NULL PRIMARY KEY ,
   user_id int NOT NULL references users(id) ,
   question_id int NOT NULL references questions(id) ,
@@ -74,5 +74,5 @@ CREATE TABLE replys (
 CREATE TABLE likes (
   id SERIAL NOT NULL PRIMARY KEY ,
   user_id int NOT NULL references users(id) ,
-  reply_id int NOT NULL references replys(id)
+  reply_id int NOT NULL references replies(id)
 );
