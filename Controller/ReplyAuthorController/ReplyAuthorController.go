@@ -8,7 +8,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-type replyData struct {
+type replyFC struct {
 	Content   string
 	LikeNum   int
 	CreatedAt string
@@ -18,17 +18,22 @@ type replyData struct {
 func GetList(c echo.Context) error {
 	questionID, _ := strconv.Atoi(c.Param("id"))
 	replyList := reply.GetListByAuthor(questionID)
+	replyListFC := convertReplyListForClient(replyList)
 
-	replyDataList := []replyData{}
-	for index, reply := range replyList {
-		replyData := replyData{}
-		replyData.Content = reply.Content
-		replyData.LikeNum = 40 - index
-		replyData.CreatedAt = reply.CreatedAt.Format("2006-01-02 15:04:05")
-
-		replyDataList = append(replyDataList, replyData)
-	}
-
-	response := map[string][]replyData{"Replies": replyDataList}
+	response := map[string][]replyFC{"Replies": replyListFC}
 	return c.JSON(http.StatusOK, response)
+}
+
+//replyモデルリストをclient用のreplyリストに変換
+func convertReplyListForClient(replyList []reply.Reply) []replyFC {
+	replyListFC := []replyFC{}
+	for index, reply := range replyList {
+		rFC := replyFC{}
+		rFC.Content = reply.Content
+		rFC.LikeNum = 40 - index
+		rFC.CreatedAt = reply.CreatedAt.Format("2006-01-02 15:04:05")
+
+		replyListFC = append(replyListFC, rFC)
+	}
+	return replyListFC
 }
