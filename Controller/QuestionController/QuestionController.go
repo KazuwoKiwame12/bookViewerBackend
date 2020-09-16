@@ -21,7 +21,7 @@ type requestPost struct {
 func Post(c echo.Context) error {
 	request := new(requestPost)
 	if err := c.Bind(request); err != nil {
-		returnValue := map[string]bool{"hasSuccess": false}
+		returnValue := map[string]bool{"HasSuccess": false}
 		return c.JSON(http.StatusInternalServerError, returnValue)
 	}
 
@@ -38,6 +38,6 @@ func Post(c echo.Context) error {
 
 	//DB処理
 	hasSuccess := question.Create(que)
-	returnValue := map[string]bool{"hasSuccess": hasSuccess}
+	returnValue := map[string]bool{"HasSuccess": hasSuccess}
 	return c.JSON(http.StatusOK, returnValue)
 }
