@@ -1,18 +1,18 @@
 package ChapterController
 
 import (
+	"net/http"
+
 	question "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Question"
 	user "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/User"
 	"github.com/labstack/echo/v4"
-	"net/http"
-	"time"
 )
 
 type questionsData struct {
 	QuestionID int
 	Title      string
 	UserName   string
-	CreatedAt  time.Time
+	CreatedAt  string
 }
 type QuestionsList struct {
 	Questions []questionsData
@@ -29,7 +29,7 @@ func GetQuestionList(c echo.Context) error {
 		questionsData.QuestionID = q.ID
 		questionsData.UserName = user.Name
 		questionsData.Title = q.Title
-		questionsData.CreatedAt = q.CreatedAt
+		questionsData.CreatedAt = q.CreatedAt.Format("2006-01-02 15:04:05")
 
 		questionsDataList = append(questionsDataList, questionsData)
 	}

@@ -19,7 +19,7 @@ type replyData struct {
 	UserName  string
 	Content   string
 	LikeNum   int
-	CreatedAt time.Time
+	CreatedAt string
 }
 
 //GetList ...質問に対する読者の返信一覧
@@ -36,7 +36,7 @@ func GetList(c echo.Context) error {
 		replyData.UserName = user.Name
 		replyData.Content = reply.Content
 		replyData.LikeNum = rand.Intn(100)
-		replyData.CreatedAt = reply.CreatedAt
+		replyData.CreatedAt = reply.CreatedAt.Format("2006-01-02 15:04:05")
 
 		replyDataList = append(replyDataList, replyData)
 	}

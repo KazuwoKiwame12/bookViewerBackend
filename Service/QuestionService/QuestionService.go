@@ -1,8 +1,6 @@
 package questionservice
 
 import (
-	"time"
-
 	question "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Question"
 	user "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/User"
 )
@@ -11,7 +9,7 @@ type questionFC struct {
 	QuestionID int
 	Title      string
 	UserName   string
-	CreatedAt  time.Time
+	CreatedAt  string
 }
 
 //QuestionListFC ..クライアントに返す質問一覧
@@ -28,7 +26,7 @@ func GetListFC(questionList []question.Question) QuestionListFC {
 		qFC.QuestionID = q.ID
 		qFC.UserName = user.Name
 		qFC.Title = q.Title
-		qFC.CreatedAt = q.CreatedAt
+		qFC.CreatedAt = q.CreatedAt.Format("2006-01-02 15:04:05")
 
 		questionListFC = append(questionListFC, qFC)
 	}

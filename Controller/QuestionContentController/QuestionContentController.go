@@ -3,7 +3,6 @@ package questioncontentcontroller
 import (
 	"net/http"
 	"strconv"
-	"time"
 
 	question "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Question"
 	user "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/User"
@@ -16,7 +15,7 @@ type questionContent struct {
 	Content   string
 	PageNum   int
 	RowNum    int
-	CreatedAt time.Time
+	CreatedAt string
 }
 
 //GetContent ...質問内容などの取得
@@ -30,7 +29,7 @@ func GetContent(c echo.Context) error {
 	response.Content = question.Content
 	response.PageNum = question.PageNum
 	response.RowNum = question.RowNum
-	response.CreatedAt = question.CreatedAt
+	response.CreatedAt = question.CreatedAt.Format("2006-01-02 15:04:05")
 
 	return c.JSON(http.StatusOK, response)
 }
