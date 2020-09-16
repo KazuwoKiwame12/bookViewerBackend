@@ -25,19 +25,19 @@ func Post(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, returnValue)
 	}
 
-	var com question.Question
+	var que question.Question
 	//構造体に入れる
-	com.UserID = request.UserID
-	com.SentenceID = request.SentenceID
-	com.Title = request.Title
-	com.Content = request.Content
-	com.Page_num = request.PageNum
-	com.Row_num = request.RowNum
+	que.UserID = request.UserID
+	que.SentenceID = request.SentenceID
+	que.Title = request.Title
+	que.Content = request.Content
+	que.PageNum = request.PageNum
+	que.RowNum = request.RowNum
 	jst, _ := time.LoadLocation("Asia/Tokyo")
-	com.Created_At = time.Now().In(jst)
+	que.CreatedAt = time.Now().In(jst)
 
 	//DB処理
-	hasSuccess := question.Create(com)
+	hasSuccess := question.Create(que)
 	returnValue := map[string]bool{"hasSuccess": hasSuccess}
 	return c.JSON(http.StatusOK, returnValue)
 }

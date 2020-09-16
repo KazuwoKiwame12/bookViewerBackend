@@ -13,9 +13,9 @@ type Question struct {
 	SentenceID int
 	Title      string
 	Content    string
-	Page_num   int
-	Row_num    int
-	Created_At time.Time
+	PageNum    int
+	RowNum     int
+	CreatedAt  time.Time
 }
 
 //Create ...質問投稿
