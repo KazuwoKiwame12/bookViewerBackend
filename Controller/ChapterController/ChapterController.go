@@ -2,38 +2,42 @@ package ChapterController
 
 import (
 	"net/http"
-	"time"
 
 	question "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Question"
 	user "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/User"
 	"github.com/labstack/echo/v4"
 )
 
-type questionsData struct {
+type questionFC struct {
 	QuestionID int
 	Title      string
 	UserName   string
-	CreatedAt  time.Time
+	CreatedAt  string
 }
-type QuestionsList struct {
-	Questions []questionsData
+type QuestionListFC struct {
+	Questions []questionFC
 }
 
-// 質問一覧を取得
+//GetQuestionList 質問一覧を取得
 func GetQuestionList(c echo.Context) error {
-	response := QuestionsList{}
+	questionList := question.GetQuestionList()
+	questionListFC := convertQuestionListForClient(questionList)
 
-	questionsDataList := []questionsData{}
-	for _, q := range question.GetQuestionList() {
-		user := user.Get(q.UserID)
-		questionsData := questionsData{}
-		questionsData.QuestionID = q.ID
-		questionsData.UserName = user.Name
-		questionsData.Title = q.Title
-		questionsData.CreatedAt = q.CreatedAt
-
-		questionsDataList = append(questionsDataList, questionsData)
-	}
-	response.Questions = questionsDataList
+	response := QuestionListFC{Questions: questionListFC}
 	return c.JSON(http.StatusOK, response)
+}
+
+func convertQuestionListForClient(questionList []question.Question) []questionFC {
+	questionListFC := []questionFC{}
+	for _, q := range questionList {
+		user := user.Get(q.UserID)
+		qFC := questionFC{}
+		qFC.QuestionID = q.ID
+		qFC.UserName = user.Name
+		qFC.Title = q.Title
+		qFC.CreatedAt = q.CreatedAt.Format("2006-01-02 15:04:05")
+
+		questionListFC = append(questionListFC, qFC)
+	}
+	return questionListFC
 }

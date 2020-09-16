@@ -12,51 +12,56 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-//ReplyDataList ...Sortのためのtype
-type ReplyDataList []replyData
+//ReplyListFC ...Sortのためのtype
+type ReplyListFC []replyFC
 
-type replyData struct {
+//client用のreply
+type replyFC struct {
 	UserName  string
 	Content   string
 	LikeNum   int
-	CreatedAt time.Time
+	CreatedAt string
 }
 
 //GetList ...質問に対する読者の返信一覧
 func GetList(c echo.Context) error {
 	questionID, _ := strconv.Atoi(c.Param("id"))
 	replyList := reply.GetListByReader(questionID)
+	replyListFC := convertReplyListForClient(replyList)
 
-	replyDataList := []replyData{}
+	sort.Sort(sort.Reverse(replyListFC))
+
+	response := map[string][]replyFC{"Replies": replyListFC}
+	return c.JSON(http.StatusOK, response)
+}
+
+//replyモデルリストをclient用のreplyリストに変換
+func convertReplyListForClient(replyList []reply.Reply) ReplyListFC {
+	replyListFC := []replyFC{}
 	for _, reply := range replyList {
 		user := user.Get(reply.UserID)
 		rand.Seed(time.Now().UnixNano())
 
-		replyData := replyData{}
-		replyData.UserName = user.Name
-		replyData.Content = reply.Content
-		replyData.LikeNum = rand.Intn(100)
-		replyData.CreatedAt = reply.CreatedAt
+		rFC := replyFC{}
+		rFC.UserName = user.Name
+		rFC.Content = reply.Content
+		rFC.LikeNum = rand.Intn(100)
+		rFC.CreatedAt = reply.CreatedAt.Format("2006-01-02 15:04:05")
 
-		replyDataList = append(replyDataList, replyData)
+		replyListFC = append(replyListFC, rFC)
 	}
-
-	var sortData ReplyDataList
-	sortData = replyDataList
-	sort.Sort(sortData)
-
-	response := map[string][]replyData{"Replies": sortData}
-	return c.JSON(http.StatusOK, response)
+	return replyListFC
 }
 
-func (r ReplyDataList) Len() int {
+//Interface
+func (r ReplyListFC) Len() int {
 	return len(r)
 }
 
-func (r ReplyDataList) Swap(i, j int) {
+func (r ReplyListFC) Swap(i, j int) {
 	r[i], r[j] = r[j], r[i]
 }
 
-func (r ReplyDataList) Less(i, j int) bool {
+func (r ReplyListFC) Less(i, j int) bool {
 	return r[i].LikeNum < r[j].LikeNum
 }
