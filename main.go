@@ -5,9 +5,10 @@ import (
 	"net/http"
 	"os"
 
-	questioncontroller "github.com/KazuwoKiwame12/bookViewerBackend/Controller/QuestionController"
 	bookcontentcontroller "github.com/KazuwoKiwame12/bookViewerBackend/Controller/BookContentController"
 	questioncontentcontroller "github.com/KazuwoKiwame12/bookViewerBackend/Controller/QuestionContentController"
+	questioncontroller "github.com/KazuwoKiwame12/bookViewerBackend/Controller/QuestionController"
+	replycontroller "github.com/KazuwoKiwame12/bookViewerBackend/Controller/ReplyController"
 
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
@@ -26,6 +27,7 @@ func main() {
 	// REST API
 	e.GET("/", helloWorld)
 	e.POST("/api/question/create", questioncontroller.Post)
+	e.POST("/api/question/reply", replycontroller.Post)
 	e.GET("/api/book/mine/:id", bookcontentcontroller.GetContent)
 	e.GET("/api/question/:id/content", questioncontentcontroller.GetContent)
 	/*
@@ -35,8 +37,6 @@ func main() {
 		e.Get("/api/question/:id/page", Controller当てはめる)
 		e.Get("/api/question/search/:title", Controller当てはめる)
 		e.Get("/api/question/search/sentence/:id", Controller当てはめる)
-
-		e.POST("/api/question/reply", Controller当てはめる)
 	*/
 
 	e.Logger.Fatal(e.Start(":" + port))
