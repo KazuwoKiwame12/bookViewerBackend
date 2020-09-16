@@ -47,7 +47,9 @@ id: 本のid、defaultで1
 ```
 - **返すデータ**
 ```
-null
+{
+  HasSuccess : bool
+}
 
 ```
 
