@@ -87,6 +87,7 @@ func main() {
 	q.SentenceID = 1
 	q.Title = "Pythonについて"
 	q.Content = "魅力を教えて～"
+	q.PageNum = 1
 	jst, _ := time.LoadLocation("Asia/Tokyo")
 	q.CreatedAt = time.Now().In(jst)
 	question.Create(q)
