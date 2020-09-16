@@ -28,8 +28,8 @@ type sentenceData struct {
 	HasQuestion bool
 }
 
-//GetBookContentsForClient ...本のデータをフロント向けに整形する
-func GetBookContentsForClient(bookID int) BookData {
+//GetContentForClient ...本のデータをフロント向けに整形する
+func GetContentForClient(bookID int) BookData {
 	response := BookData{}
 	chapterDataList := []chapterData{}
 

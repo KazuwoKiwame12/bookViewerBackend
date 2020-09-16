@@ -1,4 +1,4 @@
-package bookcontentscontroller
+package bookcontentcontroller
 
 import (
 	"net/http"
@@ -8,9 +8,9 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-//GetBookContents ...本の内容を取得
-func GetBookContents(c echo.Context) error {
+//GetContent ...本の内容を取得
+func GetContent(c echo.Context) error {
 	bookID, _ := strconv.Atoi(c.Param("id"))
-	response := bookservice.GetBookContentsForClient(bookID)
+	response := bookservice.GetContentForClient(bookID)
 	return c.JSON(http.StatusOK, response)
 }

@@ -89,12 +89,12 @@ id: 質問id
 - **返すデータ**
 ```
 {
-  "user_name": string,
-  "created_at": timestamp,
-  "page_num": int,
-  "row_num": int,
-  "title": string,
-  "content": text
+  "UserName": string,
+  "Title": string,
+  "Content": string,
+  "PageNum": int,
+  "RowNum": int,
+  "CreatedAt": timestamp,
 }
 ```
 
