@@ -12,7 +12,7 @@ func main() {
 	model.Title = "Python入門"
 	model.Image = "hogehoge"
 	model.Price = 2000
-	model.Author = "Me"
+	model.AuthorID = 2
 	model.Bio = "この本は初心者のための本です"
 	book.Create(model)
 	fmt.Println(book.Get(1))

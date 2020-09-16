@@ -1,0 +1,10 @@
+drop table likes;
+drop table replies;
+drop table questions;
+drop table sentences;
+drop table pages;
+drop table chapters;
+drop table user_books;
+drop table users;
+drop table books;
+drop table genres;

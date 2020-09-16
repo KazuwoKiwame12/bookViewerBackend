@@ -1,0 +1,14 @@
+動作する計算機環境 (platform)
+Pythonの最初のバージョンはAmoeba上で開発された。
+のちに多くの計算機環境上で動作するようになった。
+Windows[9], Windows CE
+Macintosh (Classic Mac OSおよびmacOSともに)
+iOS Pythonista for iOS (omz:software)
+Android Pydroid3 for Android (IIEC)
+各種UNIX
+Linux (Linux Standard Base3.2で標準仕様となった)
+Plan 9 (Python 3.xは未移植)
+PalmOS
+S60
+Javaプラットフォーム (Jython)
+.NET Frameworkプラットフォーム (IronPython)

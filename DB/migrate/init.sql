@@ -22,7 +22,7 @@ CREATE TABLE books (
   title VARCHAR( 100 ) NOT NULL ,
   image VARCHAR( 100 ),
   price int NOT NULL , 
-  author VARCHAR( 100 ),
+  author_id int NOT NULL references users(id),
   bio text
 );
 

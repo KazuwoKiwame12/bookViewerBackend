@@ -9,7 +9,8 @@ import (
 	questioncontroller "github.com/KazuwoKiwame12/bookViewerBackend/Controller/QuestionController"
 	bookcontentcontroller "github.com/KazuwoKiwame12/bookViewerBackend/Controller/BookContentController"
 	questioncontentcontroller "github.com/KazuwoKiwame12/bookViewerBackend/Controller/QuestionContentController"
-
+	replyauthorcontroller "github.com/KazuwoKiwame12/bookViewerBackend/Controller/ReplyAuthorController"
+	replyreadercontroller "github.com/KazuwoKiwame12/bookViewerBackend/Controller/ReplyReaderController"
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -31,16 +32,13 @@ func main() {
 	e.GET("/api/question/:id/content", questioncontentcontroller.GetContent)
 	e.GET("/api/chapter/:id", ChapterController.GetQuestionList)
 	/*
-		e.Get("/api/book/mine/:id", Controller当てはめる)
-		e.Get("/api/question/:id/content", Controller当てはめる)
-		e.Get("/api/question/:id/author/answer", Controller当てはめる)
-		e.Get("/api/question/:id/reader/answer", Controller当てはめる)
 		e.Get("/api/question/:id/page", Controller当てはめる)
 		e.Get("/api/question/search/:title", Controller当てはめる)
 		e.Get("/api/question/search/sentence/:id", Controller当てはめる)
-
 		e.POST("/api/question/reply", Controller当てはめる)
 	*/
+	e.GET("/api/question/:id/author/answer", replyauthorcontroller.GetList)
+	e.GET("/api/question/:id/reader/answer", replyreadercontroller.GetList)
 
 	e.Logger.Fatal(e.Start(":" + port))
 }
