@@ -62,3 +62,17 @@ func GetListByPage(pageID int) []Sentence {
 
 	return sentenceList
 }
+
+//GetListByQuestion ...質問IDに対応するセンテンス内容を取得
+func GetListByQuestion(questionID int) []Sentence {
+	db := db.Connect()
+	defer db.Close()
+
+	que := question{}
+	db.First(&que, questionID)
+
+	sentenceList := []Sentence{}
+	db.Where("page_id = ?", que.PageNum).Find(&sentenceList)
+
+	return sentenceList
+}

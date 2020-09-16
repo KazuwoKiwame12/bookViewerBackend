@@ -154,7 +154,11 @@ id: 質問id,
 - **返すデータ**
 ```
 {
-  content: text
+  "ContentList": [{
+    "Content": text
+  }
+  ...
+  ]
 }
 ```
 
