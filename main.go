@@ -6,6 +6,9 @@ import (
 	"os"
 
 	questioncontroller "github.com/KazuwoKiwame12/bookViewerBackend/Controller/QuestionController"
+	bookcontentcontroller "github.com/KazuwoKiwame12/bookViewerBackend/Controller/BookContentController"
+	questioncontentcontroller "github.com/KazuwoKiwame12/bookViewerBackend/Controller/QuestionContentController"
+
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -23,10 +26,10 @@ func main() {
 	// REST API
 	e.GET("/", helloWorld)
 	e.POST("/api/question/create", questioncontroller.Post)
+	e.GET("/api/book/mine/:id", bookcontentcontroller.GetContent)
+	e.GET("/api/question/:id/content", questioncontentcontroller.GetContent)
 	/*
-		e.Get("/api/book/mine/:id", Controller当てはめる)
 		e.Get("/api/chapter/:id", Controller当てはめる)
-		e.Get("/api/question/:id/content", Controller当てはめる)
 		e.Get("/api/question/:id/author/answer", Controller当てはめる)
 		e.Get("/api/question/:id/reader/answer", Controller当てはめる)
 		e.Get("/api/question/:id/page", Controller当てはめる)
