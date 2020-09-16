@@ -66,3 +66,14 @@ func GetListBySentence(sentenceID int) []Question {
 
 	return questionList
 }
+
+//GetListByTitle ...送られてきたタイトルと部分的にでも合致する質問リストを返す
+func GetListByTitle(title string) []Question {
+	db := db.Connect()
+	defer db.Close()
+
+	questionList := []Question{}
+	db.Where("Title LIKE ?", "%"+title+"%").Find(&questionList)
+
+	return questionList
+}

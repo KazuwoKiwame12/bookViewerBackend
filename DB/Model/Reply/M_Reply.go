@@ -11,6 +11,12 @@ import (
 	sentence "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Sentence"
 )
 
+type like struct {
+	ID      int
+	UserID  int
+	ReplyID int
+}
+
 //Reply ...質問に対する返信のモデル
 type Reply struct {
 	ID         int
@@ -18,6 +24,7 @@ type Reply struct {
 	QuestionID int
 	Content    string
 	CreatedAt  time.Time
+	Likes      []like
 }
 
 //Create ...返信モデルの作成

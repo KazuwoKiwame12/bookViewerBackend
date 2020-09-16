@@ -30,6 +30,6 @@ func GetList(c echo.Context) error {
 		replyDataList = append(replyDataList, replyData)
 	}
 
-	response := map[string][]replyData{"ReplyList": replyDataList}
+	response := map[string][]replyData{"Replies": replyDataList}
 	return c.JSON(http.StatusOK, response)
 }
