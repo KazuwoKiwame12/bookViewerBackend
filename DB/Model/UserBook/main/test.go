@@ -15,8 +15,6 @@ func main() {
 	jst, _ := time.LoadLocation("Asia/Tokyo")
 	model.CreatedAt = time.Now().In(jst)
 	userbook.Create(model)
-	model.BookID = 2
-	userbook.Create(model)
 	fmt.Println(userbook.Get(1, 1))
 	fmt.Println(userbook.GetList(1))
 
