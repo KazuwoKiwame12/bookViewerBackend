@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/KazuwoKiwame12/bookViewerBackend/Controller/ChapterController"
 	"net/http"
 	"os"
 
@@ -25,11 +26,13 @@ func main() {
 	e.Use(middleware.CORS())
 	// REST API
 	e.GET("/", helloWorld)
-	e.POST("/api/question/create", questioncontroller.Post)
+  e.POST("/api/question/create", questioncontroller.Post)
 	e.GET("/api/book/mine/:id", bookcontentcontroller.GetContent)
 	e.GET("/api/question/:id/content", questioncontentcontroller.GetContent)
+	e.GET("/api/chapter/:id", ChapterController.GetQuestionList)
 	/*
-		e.Get("/api/chapter/:id", Controller当てはめる)
+		e.Get("/api/book/mine/:id", Controller当てはめる)
+		e.Get("/api/question/:id/content", Controller当てはめる)
 		e.Get("/api/question/:id/author/answer", Controller当てはめる)
 		e.Get("/api/question/:id/reader/answer", Controller当てはめる)
 		e.Get("/api/question/:id/page", Controller当てはめる)
