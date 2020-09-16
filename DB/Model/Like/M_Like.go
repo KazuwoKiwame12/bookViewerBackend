@@ -61,7 +61,7 @@ func GetListByReply(replyID int) []Like {
 	reply.ID = replyID
 
 	likeList := []Like{}
-	db.Model(&reply).Association("Likes").Find(&likeList)
+	db.Where("reply_id = ?", replyID).Find(&likeList)
 
 	return likeList
 }
@@ -75,7 +75,7 @@ func GetListByUser(userID int) []Like {
 	user.ID = userID
 
 	likeList := []Like{}
-	db.Model(&user).Association("Likes").Find(&likeList)
+	db.Where("user_id = ?", userID).Find(&likeList)
 
 	return likeList
 }
