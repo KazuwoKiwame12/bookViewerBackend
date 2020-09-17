@@ -193,7 +193,7 @@ title: 質問のタイトル,
   questions: [
     {
       questionId: int,
-      userNa,e: string
+      userName: string
       title:string,
       createdAt: datetime
     },
