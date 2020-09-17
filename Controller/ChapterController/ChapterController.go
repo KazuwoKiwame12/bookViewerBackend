@@ -19,14 +19,6 @@ type QuestionListFC struct {
 }
 
 //GetQuestionList 質問一覧を取得
-//func GetQuestionList(c echo.Context) error {
-//	questionList := question.GetQuestionList()
-//	questionListFC := convertQuestionListForClient(questionList)
-//
-//	response := QuestionListFC{Questions: questionListFC}
-//	return c.JSON(http.StatusOK, response)
-//}
-
 func GetQuestionList(c echo.Context) error {
 	chapterID, _ := strconv.Atoi(c.Param("id"))
 	questionList := question.GetListByChapter(chapterID)
