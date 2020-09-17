@@ -9,19 +9,19 @@ import (
 )
 
 type requestPost struct {
-	UserID     int    `json:"user_id"`
-	SentenceID int    `json:"sentence_id"`
+	UserID     int    `json:"userId"`
+	SentenceID int    `json:"sentenceId"`
 	Title      string `json:"title"`
 	Content    string `json:"content"`
-	PageNum    int    `json:"page_num"`
-	RowNum     int    `json:"row_num"`
+	PageNum    int    `json:"pageNum"`
+	RowNum     int    `json:"rowNum"`
 }
 
 //Post ...質問投稿
 func Post(c echo.Context) error {
 	request := new(requestPost)
 	if err := c.Bind(request); err != nil {
-		returnValue := map[string]bool{"HasSuccess": false}
+		returnValue := map[string]bool{"hasSuccess": false}
 		return c.JSON(http.StatusInternalServerError, returnValue)
 	}
 
@@ -38,6 +38,6 @@ func Post(c echo.Context) error {
 
 	//DB処理
 	hasSuccess := question.Create(que)
-	returnValue := map[string]bool{"HasSuccess": hasSuccess}
+	returnValue := map[string]bool{"hasSuccess": hasSuccess}
 	return c.JSON(http.StatusOK, returnValue)
 }
