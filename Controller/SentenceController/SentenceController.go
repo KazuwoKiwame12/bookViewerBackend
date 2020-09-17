@@ -9,11 +9,11 @@ import (
 )
 
 type questionID struct {
-	QuestionID int
+	QuestionID int `json:"questionId"`
 }
 
 type contentData struct {
-	Content string
+	Content string `json:"content"`
 }
 
 //GetSentence ...質問に対応するページのセンテンスを取得
@@ -29,6 +29,6 @@ func GetSentence(c echo.Context) error {
 		contentDataList = append(contentDataList, contentData)
 	}
 
-	response := map[string][]contentData{"ContentList": contentDataList}
+	response := map[string][]contentData{"contents": contentDataList}
 	return c.JSON(http.StatusOK, response)
 }

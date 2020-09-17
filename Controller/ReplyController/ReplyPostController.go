@@ -9,8 +9,8 @@ import (
 )
 
 type requestPost struct {
-	UserID     int    `json:"user_id"`
-	QuestionID int    `json:"question_id"`
+	UserID     int    `json:"userId"`
+	QuestionID int    `json:"questionId"`
 	Content    string `json:"content"`
 }
 
@@ -18,7 +18,7 @@ type requestPost struct {
 func Post(c echo.Context) error {
 	request := new(requestPost)
 	if err := c.Bind(request); err != nil {
-		returnValue := map[string]bool{"HasSuccess": false}
+		returnValue := map[string]bool{"hasSuccess": false}
 		return c.JSON(http.StatusInternalServerError, returnValue)
 	}
 
@@ -32,6 +32,6 @@ func Post(c echo.Context) error {
 
 	//DB処理
 	hasSuccess := reply.Create(rep)
-	returnValue := map[string]bool{"HasSuccess": hasSuccess}
+	returnValue := map[string]bool{"hasSuccess": hasSuccess}
 	return c.JSON(http.StatusOK, returnValue)
 }

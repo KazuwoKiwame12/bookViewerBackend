@@ -9,23 +9,23 @@ import (
 
 //BookData ...本のデータ
 type BookData struct {
-	Book []chapterData
+	Book []chapterData `json:"book"`
 }
 
 type chapterData struct {
-	ChapterID int
-	Pages     []pageData
+	ChapterID int        `json:"chapterId"`
+	Pages     []pageData `json:"pages"`
 }
 
 type pageData struct {
-	PageID    int
-	Sentences []sentenceData
+	PageID    int            `json:"pageId"`
+	Sentences []sentenceData `json:"sentences"`
 }
 
 type sentenceData struct {
-	SentenceID  int
-	Content     string
-	HasQuestion bool
+	SentenceID  int    `json:"sentenceId"`
+	Content     string `json:"content"`
+	HasQuestion bool   `json:"hasQuestion"`
 }
 
 //GetContentForClient ...本のデータをフロント向けに整形する

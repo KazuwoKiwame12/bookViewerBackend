@@ -1,4 +1,4 @@
-package ChapterController
+package chaptercontroller
 
 import (
 	"net/http"
@@ -9,13 +9,13 @@ import (
 )
 
 type questionFC struct {
-	QuestionID int
-	Title      string
-	UserName   string
-	CreatedAt  string
+	QuestionID int    `json:"questionId"`
+	Title      string `json:"title"`
+	UserName   string `json:"userName"`
+	CreatedAt  string `json:"createdAt"`
 }
 type QuestionListFC struct {
-	Questions []questionFC
+	Questions []questionFC `json:"questions"`
 }
 
 //GetQuestionList 質問一覧を取得

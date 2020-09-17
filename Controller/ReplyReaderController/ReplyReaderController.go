@@ -17,10 +17,10 @@ type ReplyListFC []replyFC
 
 //client用のreply
 type replyFC struct {
-	UserName  string
-	Content   string
-	LikeNum   int
-	CreatedAt string
+	UserName  string `json:"userName"`
+	Content   string `json:"content"`
+	LikeNum   int    `json:"likeNum"`
+	CreatedAt string `json:"createdAt"`
 }
 
 //GetList ...質問に対する読者の返信一覧
@@ -31,7 +31,7 @@ func GetList(c echo.Context) error {
 
 	sort.Sort(sort.Reverse(replyListFC))
 
-	response := map[string][]replyFC{"Replies": replyListFC}
+	response := map[string][]replyFC{"answers": replyListFC}
 	return c.JSON(http.StatusOK, response)
 }
 
