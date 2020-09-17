@@ -9,9 +9,9 @@ import (
 )
 
 type replyFC struct {
-	Content   string
-	LikeNum   int
-	CreatedAt string
+	Content   string `json:"content"`
+	LikeNum   int    `json:"likeNum"`
+	CreatedAt string `json:"createdAt"`
 }
 
 //GetList ...質問に対する著者の返信一覧
@@ -20,7 +20,7 @@ func GetList(c echo.Context) error {
 	replyList := reply.GetListByAuthor(questionID)
 	replyListFC := convertReplyListForClient(replyList)
 
-	response := map[string][]replyFC{"Replies": replyListFC}
+	response := map[string][]replyFC{"answers": replyListFC}
 	return c.JSON(http.StatusOK, response)
 }
 
