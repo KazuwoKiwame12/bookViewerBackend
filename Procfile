@@ -1,1 +1,1 @@
-web: bookViewerBackend
+web: bin/bookViewerBackend
