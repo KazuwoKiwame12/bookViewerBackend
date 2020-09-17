@@ -1,7 +1,6 @@
 package question
 
 import (
-	"fmt"
 	chapter "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Chapter"
 	page "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Page"
 	"time"
@@ -92,7 +91,6 @@ func GetListByChapter(chapterID int) []Question {
 	}
 	questionList := []Question{}
 
-	fmt.Println(sentenceIds)
 	//id一覧で、where("sentence_id in ?", id一覧)で検索し、質問一覧取得
 	db.Where("sentence_id in (?)", sentenceIds).Find(&questionList)
 
