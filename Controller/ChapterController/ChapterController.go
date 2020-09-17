@@ -1,11 +1,11 @@
 package chaptercontroller
 
 import (
-	"net/http"
-
 	question "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Question"
 	user "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/User"
 	"github.com/labstack/echo/v4"
+	"net/http"
+	"strconv"
 )
 
 type questionFC struct {
@@ -19,8 +19,17 @@ type QuestionListFC struct {
 }
 
 //GetQuestionList 質問一覧を取得
+//func GetQuestionList(c echo.Context) error {
+//	questionList := question.GetQuestionList()
+//	questionListFC := convertQuestionListForClient(questionList)
+//
+//	response := QuestionListFC{Questions: questionListFC}
+//	return c.JSON(http.StatusOK, response)
+//}
+
 func GetQuestionList(c echo.Context) error {
-	questionList := question.GetQuestionList()
+	chapterID, _ := strconv.Atoi(c.Param("id"))
+	questionList := question.GetListByChapter(chapterID)
 	questionListFC := convertQuestionListForClient(questionList)
 
 	response := QuestionListFC{Questions: questionListFC}
