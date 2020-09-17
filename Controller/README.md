@@ -9,17 +9,17 @@ id: 本のid、defaultで1
 - **返すデータ**
 ```
 {
-  "Book": [
+  "book": [
     {
-      "ChapterID": int,
-      "Pages": [
+      "chapterID": int,
+      "pages": [
         {
-          "PageID": int,
-          "Sentences": [
+          "pageId": int,
+          "sentences": [
             {
-              "SentenceID": int,
-              "Content": text,
-              "HasQuestion": boolean(あり:0, なし:1)
+              "sentenceId": int,
+              "content": text,
+              "hasQuestion": boolean(あり:0, なし:1)
             },
             .......
           ]
@@ -38,10 +38,10 @@ id: 本のid、defaultで1
 - **受け取るデータ**
 ```
 {
-  user_id : int
-  sentence_id : int
-  page_num : int
-  row_num : int
+  userId : int
+  sentenceId : int
+  pageNum : int
+  rowNum : int
   title : string
   content : string
 }
@@ -49,7 +49,7 @@ id: 本のid、defaultで1
 - **返すデータ**
 ```
 {
-  HasSuccess : bool
+  hasSuccess : bool
 }
 
 ```
@@ -72,10 +72,10 @@ created_at(投稿日時)
 
 {
   questions: [{
-    question_id: int,
-    user_name: string
+    questionID: int,
+    userName: string
     title:string,
-    created_at: datetime
+    createdAt: datetime
   }]
 }
 
@@ -92,12 +92,12 @@ id: 質問id
 - **返すデータ**
 ```
 {
-  "UserName": string,
-  "Title": string,
-  "Content": string,
-  "PageNum": int,
-  "RowNum": int,
-  "CreatedAt": timestamp,
+  "userName": string,
+  "title": string,
+  "content": string,
+  "pageNum": int,
+  "rowNum": int,
+  "createdAt": timestamp,
 }
 ```
 
@@ -113,9 +113,9 @@ id: 質問id,
 {
   "answers": [
     {
-      "created_at": timestamp,
+      "createdAt": timestamp,
       "content": text,
-      "like_num": int(default: 40)
+      "likeNum": int(default: 40)
     },
     ........
   ]
@@ -134,10 +134,10 @@ id: 質問id,
 {
   "answers": [
     {
-      "user_name": string
-      "created_at": timestamp,
+      "userName": string
+      "createdAt": timestamp,
       "content": text,
-      "like_num": int(default: random)←高い順でsortする
+      "likeNum": int(default: random)←高い順でsortする
     },
     ........
   ]
@@ -154,8 +154,8 @@ id: 質問id,
 - **返すデータ**
 ```
 {
-  "ContentList": [{
-    "Content": text
+  "contents": [{
+    "content": text
   }
   ...
   ]
@@ -168,15 +168,15 @@ id: 質問id,
 - **受け取るデータ**
 ```
 {
-  user_id : int
-  question_id : int
+  userId : int
+  questionId : int
   content : string
 }
 ```
 - **返すデータ**
 ```
 {
-  HasSuccess : bool
+  hasSuccess : bool
 }
 ```
 
@@ -192,10 +192,10 @@ title: 質問のタイトル,
 {
   questions: [
     {
-      question_id: int,
-      user_name: string
+      questionId: int,
+      userNa,e: string
       title:string,
-      created_at: datetime
+      createdAt: datetime
     },
     ..............
   ]
@@ -213,10 +213,10 @@ id: 文書id,
 ```
 {
   question: [{
-    question_id: int,
-    user_name: string
+    questionId: int,
+    userName: string
     title:string,
-    created_at: datetime
+    createdAt: datetime
   }]
 }
 ```
