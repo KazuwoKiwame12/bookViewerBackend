@@ -7,7 +7,7 @@ import (
 
 type questionFC struct {
 	QuestionID int    `json:"questionId"`
-	Title      string `jsond:"title"`
+	Title      string `json:"title"`
 	UserName   string `json:"userName"`
 	CreatedAt  string `json:"createdAt"`
 }
