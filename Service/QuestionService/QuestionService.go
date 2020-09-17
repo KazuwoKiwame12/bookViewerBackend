@@ -6,15 +6,15 @@ import (
 )
 
 type questionFC struct {
-	QuestionID int
-	Title      string
-	UserName   string
-	CreatedAt  string
+	QuestionID int    `json:"questionId"`
+	Title      string `jsond:"title"`
+	UserName   string `json:"userName"`
+	CreatedAt  string `json:"createdAt"`
 }
 
 //QuestionListFC ..クライアントに返す質問一覧
 type QuestionListFC struct {
-	Questions []questionFC
+	Questions []questionFC `json:"questions"`
 }
 
 //GetListFC ...タイトルと部分的にも合致する質問一覧を取得
