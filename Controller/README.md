@@ -11,7 +11,7 @@ id: 本のid、defaultで1
 {
   "book": [
     {
-      "chapterID": int,
+      "chapterId": int,
       "pages": [
         {
           "pageId": int,
@@ -65,14 +65,14 @@ id: 本のid、defaultで1
 ```
 - **返すデータ**
 ```
-question_id
+questionId
 title(質問のタイトル)
 name(ユーザー)
-created_at(投稿日時)
+createdAt(投稿日時)
 
 {
   questions: [{
-    questionID: int,
+    questionId: int,
     userName: string
     title:string,
     createdAt: datetime
@@ -193,7 +193,7 @@ title: 質問のタイトル,
   questions: [
     {
       questionId: int,
-      userNa,e: string
+      userName: string
       title:string,
       createdAt: datetime
     },
