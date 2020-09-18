@@ -70,9 +70,10 @@ func GetListByQuestion(questionID int) []Sentence {
 
 	que := question{}
 	db.First(&que, questionID)
+	sentence := Get(que.SentenceID)
 
 	sentenceList := []Sentence{}
-	db.Where("page_id = ?", que.PageNum).Find(&sentenceList)
+	db.Where("page_id = ?", sentence.PageID).Find(&sentenceList)
 
 	return sentenceList
 }
