@@ -1,6 +1,8 @@
 package question
 
 import (
+	chapter "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Chapter"
+	page "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Page"
 	"time"
 
 	db "github.com/KazuwoKiwame12/bookViewerBackend/DB"
@@ -63,6 +65,34 @@ func GetListBySentence(sentenceID int) []Question {
 
 	questionList := []Question{}
 	db.Model(&sentence).Association("Questions").Find(&questionList)
+
+	return questionList
+}
+
+func GetListByChapter(chapterID int) []Question {
+	db := db.Connect()
+	defer db.Close()
+
+	chapter := chapter.Chapter{}
+	chapter.ID = chapterID
+
+	// 章のidより、ページidを取得
+	page := page.Page{}
+	db.First(&page, chapterID)
+
+	//ページから、文章一覧を取得
+	sentenceList := []sentence.Sentence{}
+	db.Model(&page).Association("Sentences").Find(&sentenceList)
+
+	//文章一覧から、idを抜き取る
+	sentenceIds := make([]interface{}, len(sentenceList))
+	for i, s := range sentenceList {
+		sentenceIds[i] = s.ID
+	}
+	questionList := []Question{}
+
+	//id一覧で、where("sentence_id in ?", id一覧)で検索し、質問一覧取得
+	db.Where("sentence_id in (?)", sentenceIds).Find(&questionList)
 
 	return questionList
 }

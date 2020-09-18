@@ -3,9 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"os"
-
 	sentence "github.com/KazuwoKiwame12/bookViewerBackend/DB/Model/Sentence"
+	"os"
 )
 
 func main() {
